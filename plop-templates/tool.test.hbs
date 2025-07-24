@@ -1,0 +1,31 @@
+import { {{pascalCase name}}Tool } from '../{{kebabCase name}}-tool/{{pascalCase name}}Tool.js';
+import { setupFetch, assertHeadersSent } from '../../utils/requestUtils.test-helpers.js';
+
+describe('{{pascalCase name}}Tool', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('sends custom header', async () => {
+    const mockFetch = setupFetch();
+    await new {{pascalCase name}}Tool().run({...});
+    assertHeadersSent(mockFetch);
+  });
+
+  it('handles fetch errors gracefully', async () => {
+    const mockFetch = setupFetch({
+      ok: false,
+      status: 404,
+      statusText: 'Not Found'
+    });
+
+    const result = await new {{pascalCase name}}Tool().run({...});
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0]).toMatchObject({
+      type: 'text',
+      text: 'Internal error has occurred.'
+    });
+    assertHeadersSent(mockFetch);
+  });
+});

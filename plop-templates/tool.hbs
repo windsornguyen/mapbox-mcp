@@ -1,0 +1,28 @@
+import { z } from 'zod';
+import { MapboxApiBasedTool } from '../MapboxApiBasedTool.js';
+
+const {{pascalCase name}}InputSchema = z.object({
+  ... write your input schema here ...
+});
+
+export class {{pascalCase name}}Tool extends MapboxApiBasedTool<
+  typeof {{pascalCase name}}InputSchema
+> {
+  name = '{{toolName}}';
+  description = 'Tool description.';
+
+  constructor() {
+    super({ inputSchema: {{pascalCase name}}InputSchema });
+  }
+
+  protected async execute(
+    input: z.infer<typeof {{pascalCase name}}InputSchema>
+  ): Promise<any> {
+    ... write your logic here ...
+    // e.g.:
+    // const url = `${MapboxApiBasedTool.MAPBOX_API_ENDPOINT}...?access_token=${MapboxApiBasedTool.MAPBOX_ACCESS_TOKEN}`;
+    // const response = await fetch(url);
+    // const data = await response.json();
+    // return data;
+  }
+}
