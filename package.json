@@ -9,7 +9,7 @@
   "bin": {
     "mcp-server": "dist/index.js"
   },
- "scripts": {
+  "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts"
@@ -66,6 +66,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.16.0",
     "dotenv": "^17.2.0",
+    "eslint-plugin-prettier": "^5.5.3",
     "zod": "^3.25.42"
   }
 }
