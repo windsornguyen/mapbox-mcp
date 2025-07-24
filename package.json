@@ -9,21 +9,10 @@
   "bin": {
     "mcp-server": "dist/index.js"
   },
-  "scripts": {
-    "lint": "eslint \"./src/**/*.{ts,tsx}\"",
-    "lint:fix": "eslint \"./src/**/*.{ts,tsx}\" --fix",
-    "format": "prettier --check \"./src/**/*.{ts,tsx,js,json,md}\"",
-    "format:fix": "prettier --write \"./src/**/*.{ts,tsx,js,json,md}\"",
-    "prepare": "husky && node .husky/setup-hooks.js",
-    "test": "jest",
-    "build": "npm run prepare && npm run build:esm && npm run build:cjs && npm run generate-version && node scripts/add-shebang.cjs",
-    "build:esm": "node scripts/build-helpers.cjs esm-package && tsc -p tsconfig.json",
-    "build:cjs": "node scripts/build-helpers.cjs cjs-package && tsc -p tsconfig.json",
-    "generate-version": "node scripts/build-helpers.cjs generate-version",
+ "scripts": {
+    "build": "tsc",
     "start": "node dist/index.js",
-    "start:http": "node dist/index.js --port 3005",
-    "dev": "tsx src/index.ts",
-    "dev:http": "tsx src/index.ts --port 3005"
+    "dev": "tsx src/index.ts"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
