@@ -10,9 +10,13 @@
     "mcp-server": "dist/index.js"
   },
  "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "tsx src/index.ts"
+    "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', '755')\"",
+    "start": "node dist/index.js --port 3001",
+    "dev:stdio": "tsx src/index.ts",
+    "dev:http": "tsx src/index.ts --port 3001",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "inspector": "npx @modelcontextprotocol/inspector dist/index.js"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
